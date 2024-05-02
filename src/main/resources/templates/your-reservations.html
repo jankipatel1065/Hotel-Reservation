@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Reference Google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+	<!-- Reference Bootstrap and local files -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+	<link rel="stylesheet" th:href="@{css/slick.css}">
+	<link rel="stylesheet" th:href="@{css/slick-theme.css}">
+	<link rel="stylesheet" th:href="@{css/your-reservations.css}">
+	<link rel="icon" th:href="@{images/header/white-logo.png}">
+
+	<title>Your Reservation</title>
+</head>
+
+<body>
+
+<div class="main-overlay js-main-overlay"></div>
+
+<!-- Main Cover Section -->
+<section class="cover-main" id="home">
+	<header>
+		<nav class="nav-wrapper">
+			<div class="logo">
+				<a th:href="@{/}"> <img th:src="@{images/header/white-logo.png}" class="logo">
+				</a>
+			</div>
+
+			<!-- Menu bar -->
+			<ul class="menu">
+				<li><a href="#home">Your Reservations</a></li>
+				<li><a href="#user-res">Reservations list</a></li>
+				<li><a href="#footer">About Me</a></li>
+			</ul>
+		</nav>
+		<div class="menu-trigger js-menu-trigger"></div>
+	</header>
+
+	<!-- Main buttons and title -->
+	<div class="wrapper">
+		<ul id="scene" data-invert-x="false" data-invert-y="false" data-scalar-x="7" data-scalar-y="7"
+			data-friction-x="0.1" data-friction-y="0.1" data-origin-x="0.5" data-origin-y="0.5">
+			<li class="layer name" data-depth="0.90">Your Reservations</li>
+			<li class="layer btn btn-main" data-depth="0.30"><a th:href="@{/new-reservation}" class="res-btn">New
+				Reservation</a> <br>
+				<a th:href="@{/}" class="back-btn">Back Home</a></li>
+		</ul>
+	</div>
+</section>
+
+<!-- Reservations Table Section -->
+<section class="container">
+	<h2 class="sub-title" id="user-res">User Reservations</h2>
+	<h2 class="re-lis-h2">Reservation List</h2>
+
+	<div class="table-responsive">
+		<table class="table table-bordered table-striped">
+			<!-- thead Table elements -->
+			<thead class="thead-dark">
+			<tr>
+				<th>Res ID</th>
+				<th>Room</th>
+				<th>Rooms</th>
+				<th>Persons</th>
+				<th>Children</th>
+				<th>Open Buffet</th>
+				<th>Stay Period</th>
+				<th>Arrival Date</th>
+				<th>Total Price</th>
+				<th>Action</th>
+			</tr>
+			</thead>
+			<!-- loop in each reservation in list and fill table -->
+			<tbody>
+			<tr th:each="tempRes : ${resList}">
+				<td class="text-center" th:text="${tempRes.id}"></td>
+				<td class="text-center" th:text="${tempRes.room}"></td>
+				<td class="text-center" th:text="${tempRes.rooms}"></td>
+				<td class="text-center" th:text="${tempRes.persons}"></td>
+				<td class="text-center" th:text="${tempRes.children}"></td>
+				<td class="text-center" th:text="${tempRes.openBuffet}"></td>
+				<td class="text-center" th:text="${tempRes.stayDays}"></td>
+				<td class="text-center" th:text="${tempRes.arrivalDate}" id="arr_str"></td>
+				<td class="text-center" th:text="${tempRes.price}"></td>
+				<td class="text-center">
+					<!-- Update and Delete buttons -->
+					<div class="btn-group" role="group">
+						<form class="m-1" th:action="@{/reservation-update}" method="POST">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+							<input type="hidden" name="resId" th:value="${tempRes.id}" />
+							<button type="submit" class="btn btn-info">Update</button>
+						</form>
+						<form class="m-1" th:action="@{/reservation-delete}" method="POST">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+							<input type="hidden" name="resId" th:value="${tempRes.id}" />
+							<button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Reservation?')">Delete</button>
+						</form>
+					</div>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+
+
+<!-- Footer -->
+<footer id="footer" class="main-footer">
+
+	<div class="container-body">
+
+		<!-- Footer Column one (information) -->
+		<div class="colum1">
+			<h1>About Me</h1>
+			<br><br>
+			<h2 style="font-size: 20px;"><b>Janki Patel</b></h2>
+
+		</div>
+
+
+		<!-- Footer Column two (social links) -->
+		<div class="colum2">
+			<h1>Social Links</h1>
+
+			<div class="row">
+				<a href="https://github.com/jankipatel1065	" target="_blank"><img src="/images/footer/github.png" /></a>
+				<p>GitHub Account</p>
+			</div>
+
+			<div class="row">
+				<a href="https://www.linkedin.com/in/jankipatel8/" target="_blank"><img
+						src="/images/footer/linkedIn.png" /></a>
+				<p>LinkedIn Account</p>
+			</div>
+
+
+		</div>
+
+		<!-- Footer Column three (contact info) -->
+		<div class="colum3">
+			<h1>Contact</h1>
+
+			<div class="row2">
+				<a target="_blank"
+				   href="https://www.google.com/maps/place/Toronto,+ON/@43.718371,-79.5428681,11z/data=!3m1!4b1!4m6!3m5!1s0x89d4cb90d7c63ba5:0x323555502ab4c477!8m2!3d43.653226!4d-79.3831843!16zL20vMGg3aDY?entry=ttu"><img
+						src="images/footer/location.png" /></a>
+				<p>Canada</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Container Footer -->
+	<div class="container-footer">
+		<div class="footer">
+			<div class="copyright">
+				Copyright ©2024 All rights reserved | <a>Developed By:
+				Janki Patel</a>
+			</div>
+
+			<div class="information">
+				<a>Hotel Reservation</a> | <a>Hotel Reservation</a> | <a>Dr.
+				Janki Patel</a>
+			</div>
+		</div>
+
+	</div>
+
+</footer>
+
+
+<!-- Reference Javascript and local files -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+
+<script th:src="@{scripts/reservation.js}"></script>
+
+</body>
+
+</html>
