@@ -31,31 +31,31 @@ Responsive Design: The frontend is designed to be user-friendly and responsive a
 
 Project Interface Test
 
-# Sign In:
+## Sign In:
 
 You can’t open any another page without sign in, you will directly transfer automatic to this page.
 
 ![alt text](loginpage.png)
 
-# Sign Up
+## Sign Up
 
 Here you can Sign Up new account of your own and will be saved next time you can just sign in directly.
 
 ![alt text](register.png)
 
-# Home:
+## Home:
 
 There are many sections about the hotel to view it and information about it, Rooms, Services, Review. Etc It’s a full page with header and content and footer. You can use features like, Log Out, New Reservation or view logged in user reservations.
 
 ![alt text](home.png)
 
-# New Reservation:
+## New Reservation:
 
 Reservations page, here you can book a room.
 
 ![alt text](nr.png)
 
-# Reservations List:
+## Reservations List:
 
 In this page you can modify your reservation and see list of user logged in reservations and can delete it or can update it with another choices.
 
