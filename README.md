@@ -21,4 +21,4 @@ Java Persistence API (JPA)
 MySQL
 Maven
 
-![Alt Text]("C:\Users\janki\OneDrive - Humber College\Documents\humber\sem 4\github3\Janki-Hoteeel-Reservation\Janki- Hotel-Reservation\Hotel Room Booking Management System UML copy.jpg")
+![alt text](uml.jpg)
